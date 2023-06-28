@@ -1,70 +1,27 @@
-import React from 'react';
-// import ButtonItem from './ButtonItem';
+import PropTypes from 'prop-types';
+import css from './Feedback.module.css';
 
-// class Feedback extends React.Component {
-//   state = {
-//     good: 0,
-//     neutral: 0,
-//     bad: 0,
-//   };
+const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+  return (
+    <ul className={css.btnList}>
+      {options.map((option, index) => (
+        <li key={index}>
+          <button
+            className={css.btn}
+            type="button"
+            onClick={() => onLeaveFeedback(option)}
+          >
+            {option}
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
-//   handleIncreamentGood = () => {
-//     this.setState(prevState => ({
-//       good: prevState.good + 1,
-//     }));
-//   };
-//   handleIncreamentNeutral = () => {
-//     this.setState(prevState => ({
-//       neutral: prevState.neutral + 1,
-//     }));
-//   };
-//   handleIncreamentBad = () => {
-//     this.setState(prevState => ({
-//       bad: prevState.bad + 1,
-//     }));
-//   };
-//   render() {
-//     return (
-//       <div>
-//         <h1>Please Leave feedback</h1>
+FeedbackOptions.propTypes = {
+  onLeaveFeedback: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
-//         <ButtonItem
-//           onIncreamentGood={this.handleIncreamentGood}
-//           onIncreamentNeutral={this.handleIncreamentNeutral}
-//           onIncreamentBad={this.handleIncreamentBad}
-//         />
-
-//         <div>
-//           <h1>Statistic</h1>
-//           <h2>No feedback given</h2>
-//           <ul>
-//             <li>
-//               Good:
-//               <span>{this.state.good}</span>
-//             </li>
-//             <li>
-//               Neutral:
-//               <span>{this.state.neutral}</span>
-//             </li>
-//             <li>
-//               Bad:
-//               <span>{this.state.bad}</span>
-//             </li>
-//             <li>
-//               Total:
-//               <span>
-//                 {this.state.good + this.state.neutral + this.state.bad}
-//               </span>
-//             </li>
-//             <li>
-//               Positive feedback:
-//               <span>0</span>
-//             </li>
-//           </ul>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-
-// export default Feedback;
+export default FeedbackOptions;
